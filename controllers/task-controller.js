@@ -1,16 +1,18 @@
 const Task = require('../models/task');
 const taskController = {};
 
-taskController.index = (req,res) => {
-  Task.findAll()
-  .then(tasks => {
-    res.render('tasks/task-index', {tasks});
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  })
-}
+// taskController.index = (req,res) => {
+//   Task.findAll()
+//   .then(tasks => {
+//     res.render('tasks/task-index', {tasks});
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     res.status(500).json(err);
+//   })
+// }
+
+
 taskController.show = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
@@ -26,7 +28,7 @@ taskController.show = (req,res) => {
 taskController.filterCategory = (req,res) => {
   Task.findByCategory(req.params.category)
   .then(tasks => {
-    res.render('tasks/task-index', {task});
+    res.render('/user', {task});
   })
   .catch(err => {
     console.log(err);
@@ -36,9 +38,9 @@ taskController.filterCategory = (req,res) => {
 
 // figure out how to get these to work
 taskController.filterStatus = (req,res) => {
-  Task.findByCategory(req.params.status)
+  Task.findByStatus(req.params.status)
   .then(tasks => {
-    res.render('tasks/task-index', {task});
+    res.render('/user', {task});
   })
   .catch(err => {
     console.log(err);
