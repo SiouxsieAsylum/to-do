@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(logger("dev"));
-app.use(express.static(path.join((__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'))
