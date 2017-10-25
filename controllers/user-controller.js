@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const userController = {};
 
-// is this even necessary?Will we ever need this route?
+// will eventually be the user
 userController.index = (req,res) => {
   User.findAll()
   .then(users => {
