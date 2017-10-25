@@ -2,7 +2,7 @@ const db = require('../db/config');
 const User = {};
 
 User.findAllUserTasks = (id) => {
-  return db.oneOrMany(`SELECT * FROM tasks WHERE tasks.user_id = $1`, [id]);
+  return db.manyOrNone(`SELECT * FROM tasks WHERE tasks.user_id = $1`, [id]);
 }
 
 User.create = (user) => {

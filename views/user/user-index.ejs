@@ -1,0 +1,8 @@
+<% include ../partials/header%>
+  <ul>
+    <% for (let t of tasks) {%>
+      <li><%= t.title %></li>
+    <%}%>
+  </ul>
+  <a href="/user/<%= user.id %>/edit"><button>edit</button></a>
+<% include ../partials/end%>

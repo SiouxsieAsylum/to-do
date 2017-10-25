@@ -8,11 +8,10 @@ const userController = {};
 /////////////DISPLAY USER TASKS///////
 /////////////////////////////////////
 userController.index = (req,res) => {
-  User.findAllUserTasks(req.params.id)
-  console.log("user id = " + id)
-  .then(tasks => {
+  User.findAllUserTasks(req.user.id)
+  .then((tasks,user) => {
     console.log("index");
-    res.render(`/user/user-index`, {tasks})
+    res.render('user/user-index', { tasks, user })
   })
   .catch(err => {
     console.log(err)
@@ -63,7 +62,7 @@ userController.update = (req,res) => {
   .then(user => {
     req.login(user,(err) =>{
       if (err) return next(err);
-      res.redirect('/user/user-show')
+      res.redirect(`/user/${user.id}`)
     })
   })
   .catch(err => {
@@ -85,8 +84,8 @@ userController.create = (req,res) => {
     firstname:req.body.firstname
   })
   .then(user => {
-    req.login(user,(err) =>{
-      if (err) return next(err);
+    req.login(user, (err) => {
+      if (err) console.log(err);
       res.redirect('/user')
     })
   })
