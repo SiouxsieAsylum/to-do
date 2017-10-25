@@ -21,6 +21,31 @@ taskController.show = (req,res) => {
     res.status(500).json(err);
   })
 }
+
+// figure out how to get these to work
+taskController.filterCategory = (req,res) => {
+  Task.findByCategory(req.params.category)
+  .then(tasks => {
+    res.render('tasks/task-index', {task});
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+}
+
+// figure out how to get these to work
+taskController.filterStatus = (req,res) => {
+  Task.findByCategory(req.params.status)
+  .then(tasks => {
+    res.render('tasks/task-index', {task});
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+}
+
 taskController.edit = (req,res) => {
   Task.findById(req.param.id)
   .then(task => {
@@ -37,7 +62,7 @@ taskController.create = (req,res) => {
     category: req.body.category,
     user_id: req.body.user_id;
   })
-  .then(tasks => {
+  .then(task => {
     res.redirect(`tasks/${task.id}`);
   })
   .catch(err => {
@@ -51,7 +76,7 @@ taskController.update = (req,res) => {
     category: req.body.category,
     user_id: req.body.user_id;
   }, req.params.id)
-  .then(tasks => {
+  .then((tasks) => {
     res.redirect(`tasks/${task.id}`);
   })
   .catch(err => {
@@ -61,7 +86,7 @@ taskController.update = (req,res) => {
 }
 taskController.delete = (req,res) => {
   Task.delete(req.params.id)
-  .then(tasks => {
+  .then(() => {
     res.redirect('/tasks');
   })
   .catch(err => {
