@@ -1,18 +1,9 @@
 const Task = require('../models/task');
 const taskController = {};
 
-// taskController.index = (req,res) => {
-//   Task.findAll()
-//   .then(tasks => {
-//     res.render('tasks/task-index', {tasks});
-//   })
-//   .catch(err => {
-//     console.log(err);
-//     res.status(500).json(err);
-//   })
-// }
-
-
+///////////////////////////////////////
+/////////////DISPLAY FULL TASK////////
+/////////////////////////////////////
 taskController.show = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
@@ -25,6 +16,10 @@ taskController.show = (req,res) => {
 }
 
 // figure out how to get these to work
+
+///////////////////////////////////////
+/////////////FIND TASKS BY CATEGORY///
+/////////////////////////////////////
 taskController.filterCategory = (req,res) => {
   Task.findByCategory(req.params.category)
   .then(tasks => {
@@ -37,6 +32,10 @@ taskController.filterCategory = (req,res) => {
 }
 
 // figure out how to get these to work
+
+///////////////////////////////////////
+/////////////FIND TASKS BY STATUS/////
+/////////////////////////////////////
 taskController.filterStatus = (req,res) => {
   Task.findByStatus(req.params.status)
   .then(tasks => {
@@ -48,6 +47,9 @@ taskController.filterStatus = (req,res) => {
   })
 }
 
+///////////////////////////////////////
+/////////////RENDER EDIT TASKS PAGE///
+/////////////////////////////////////
 taskController.edit = (req,res) => {
   Task.findById(req.param.id)
   .then(task => {
@@ -58,6 +60,10 @@ taskController.edit = (req,res) => {
     res.status(500).json(err);
   })
 }
+
+///////////////////////////////////////
+/////////////CREATE TASKS/////////////
+/////////////////////////////////////
 taskController.create = (req,res) => {
   Task.create({
     title: req.body.title,
@@ -72,6 +78,10 @@ taskController.create = (req,res) => {
     res.status(500).json(err);
   })
 }
+
+///////////////////////////////////////
+/////////////UPDATE TASKS/////////////
+/////////////////////////////////////
 taskController.update = (req,res) => {
   Task.update({
     title: req.body.title,
@@ -86,6 +96,10 @@ taskController.update = (req,res) => {
     res.status(500).json(err);
   })
 }
+
+///////////////////////////////////////
+/////////////DELETE TASKS/////////////
+/////////////////////////////////////
 taskController.delete = (req,res) => {
   Task.delete(req.params.id)
   .then(() => {
