@@ -4,14 +4,14 @@ const options = {
   }
 }
 
-const pg = require ('pg-promise');
+const pg = require('pg-promise')(options);
 
 function setDatabase(){
   if(process.env.NODE_ENV === "development" || !process.env.NODE_ENV){
       return pg({
-        database: 'todo_dev',
+        database:'todo_dev',
         port: 5432,
-        host: 'localhost'
+        host:'localhost'
       })
   } else if (process.env.NODE_ENV === 'production'){
     return pg(process.env.DATABASE_URL);

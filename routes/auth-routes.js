@@ -2,7 +2,7 @@ const express = require('express');
 const authRouter = express.Router();
 const passport = require('../services/auth/local');
 const authHelpers = require('../services/auth/auth-helpers');
-const userControllers = require('../controllers/user-controllers');
+const userControllers = require('../controllers/user-controller');
 
 // don't forget your auth routes!!!
 // this should just be stuff related to the profile

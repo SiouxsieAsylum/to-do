@@ -7,7 +7,7 @@ const taskController = {};
 taskController.show = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
-    res.render('tasks/task-show', {task});
+    res.render('/tasks/task-show', { task });
   })
   .catch(err => {
     console.log(err);
@@ -68,7 +68,7 @@ taskController.create = (req,res) => {
   Task.create({
     title: req.body.title,
     category: req.body.category,
-    user_id: req.body.user_id;
+    user_id: req.body.user_id
   })
   .then(task => {
     res.redirect(`tasks/${task.id}`);
@@ -86,8 +86,8 @@ taskController.update = (req,res) => {
   Task.update({
     title: req.body.title,
     category: req.body.category,
-    user_id: req.body.user_id;
-  }, req.params.id)
+    user_id: req.body.user_id
+  }, req.user.id)
   .then((tasks) => {
     res.redirect(`tasks/${task.id}`);
   })

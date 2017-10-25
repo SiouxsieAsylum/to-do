@@ -6,9 +6,9 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const path = require("path");
 const methodOverride= require("method-override");
-const userRoutes = require("user-routes");
-const authRoutes = require("auth-routes");
-const taskRoutes = require("task-routes");
+const userRoutes = require("./routes/user-routes");
+const authRoutes = require("./routes/auth-routes");
+const taskRoutes = require("./routes/task-routes");
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const passport = require("passport");
@@ -42,7 +42,8 @@ app.use(passport.session());
 /////////////////////////////////////
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-
+app.use('tasks',taskRoutes);
+// userRouter.use('/tasks', tasks);
 
 ///////////////////////////////////////
 /////////////SET VIEWS////////////////
@@ -66,9 +67,3 @@ app.use("*", (req,res) => {
 })
 
 
-//
-// const = require("");
-// const = require("");
-// const = require("");
-// const = require("");
-// const = require("");

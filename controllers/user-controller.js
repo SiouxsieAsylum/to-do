@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const Task = require('../models/task');
+
 const userController = {};
 
 ///////////////////////////////////////
@@ -8,7 +9,9 @@ const userController = {};
 /////////////////////////////////////
 userController.index = (req,res) => {
   User.findAllUserTasks(req.params.id)
+  console.log("user id = " + id)
   .then(tasks => {
+    console.log("index");
     res.render(`/user/user-index`, {tasks})
   })
   .catch(err => {
@@ -51,8 +54,9 @@ userController.edit = (req,res) => {
 userController.update = (req,res) => {
   const salt = bcrypt.generateSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);
+  console.log(hash);
   User.update({
-    username: req.params.username,
+    username: req.body.username,
     password: hash,
     firstname:req.body.firstname
   }, req.params.id)
@@ -72,10 +76,11 @@ userController.update = (req,res) => {
 /////////////REGISTER NEW USER////////
 /////////////////////////////////////
 userController.create = (req,res) => {
-  const salt = bcrypt.generateSaltSync();
+  const salt = bcrypt.genSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);
+  console.log(hash);
   User.create({
-    username: req.params.username,
+    username: req.body.username,
     password: hash,
     firstname:req.body.firstname
   })
@@ -94,7 +99,7 @@ userController.create = (req,res) => {
 ///////////////////////////////////////
 /////////////DELETE NEW USER//////////
 /////////////////////////////////////
-userController.destroy = (req,res) => {
+userController.delete = (req,res) => {
   User.delete()
   .then(user => {
     req.logout();
