@@ -3,17 +3,23 @@ const User = require('../models/user');
 const Task = require('../models/task');
 const userController = {};
 
-// will eventually be the user
+///////////////////////////////////////
+/////////////DISPLAY USER TASKS///////
+/////////////////////////////////////
 userController.index = (req,res) => {
-  User.findAll()
-  .then(user => {
-    res.render(`/tasks`, {user})
+  User.findAllUserTasks(req.params.id)
+  .then(tasks => {
+    res.render(`/user/user-index`, {tasks})
   })
   .catch(err => {
     console.log(err)
     res.status(500).json(err)
   })
 }
+
+///////////////////////////////////////
+/////////////USER PROFILE/////////////
+/////////////////////////////////////
 userController.show = (req,res) => {
   User.findById()
   .then(user => {
@@ -25,6 +31,9 @@ userController.show = (req,res) => {
   })
 }
 
+///////////////////////////////////////
+/////////////EDIT PROFILE VIEW////////
+/////////////////////////////////////
 userController.edit = (req,res) => {
   User.findByUserName(req.params.username)
   .then(user => {
@@ -35,6 +44,10 @@ userController.edit = (req,res) => {
     res.status(500).json(err)
   })
 }
+
+///////////////////////////////////////
+/////////////UPDATE USER PROFILE//////
+/////////////////////////////////////
 userController.update = (req,res) => {
   const salt = bcrypt.generateSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -55,6 +68,9 @@ userController.update = (req,res) => {
   })
 }
 
+///////////////////////////////////////
+/////////////REGISTER NEW USER////////
+/////////////////////////////////////
 userController.create = (req,res) => {
   const salt = bcrypt.generateSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -74,6 +90,10 @@ userController.create = (req,res) => {
     res.status(500).json(err)
   })
 }
+
+///////////////////////////////////////
+/////////////DELETE NEW USER//////////
+/////////////////////////////////////
 userController.destroy = (req,res) => {
   User.delete()
   .then(user => {

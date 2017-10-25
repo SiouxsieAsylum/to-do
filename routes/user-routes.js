@@ -7,4 +7,5 @@ userRoutes.get('/', authHelpers.loginRequired, userController.index);
 
 
 
+
 module.exports = userRouter;

@@ -1,6 +1,10 @@
 const db = require('../db/config');
 const User = {};
 
+User.findAllUserTasks = () => {
+  return db.oneOrMany(`SELECT * FROM tasks WHERE tasks.user_id = $1`, [id]);
+}
+
 User.create = (user) => {
   return db.one(`INSERT INTO users (username, password, firstname) VALUES ($1,$2)`[user.username, user.password, user.firstname]);
 }
