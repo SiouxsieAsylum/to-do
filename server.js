@@ -43,7 +43,17 @@ app.use(methodOverride('_method'));
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/tasks',taskRoutes);
-// userRouter.use('/tasks', tasks);
+
+///////////////////////////////////////
+/////////////USER INFO ///////////////
+/////////////////////////////////////
+// adapted from https://stackoverflow.com/questions/37973266/node-101-changing-the-nav-bar-when-a-user-is-logged-in
+app.use(function(req,res,next){
+  if (req.user){
+    req.locals.user = req.user;
+  }
+  next();
+})
 
 ///////////////////////////////////////
 /////////////SET VIEWS////////////////
