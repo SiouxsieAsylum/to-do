@@ -87,9 +87,10 @@ taskController.update = (req,res) => {
     title: req.body.title,
     category: req.body.category,
     description: req.body.description
-  }, req.user.id)
+  }, req.params.id)
   .then((task) => {
-    res.redirect(`user/tasks/${task.id}`);
+    console.log(task);
+    res.render(`tasks/task-show`, { task });
   })
   .catch(err => {
     console.log(err);

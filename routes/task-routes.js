@@ -31,6 +31,6 @@ taskRouter.put("/:id", authHelpers.loginRequired, taskControllers.update);
 ///////////////////////////////////////
 /////////////DELETE REQUESTS//////////
 /////////////////////////////////////
-taskRouter.delete("/", authHelpers.loginRequired, taskControllers.delete);
+taskRouter.delete("/:id", authHelpers.loginRequired, taskControllers.delete);
 
 module.exports = taskRouter;

@@ -22,16 +22,16 @@ userController.index = (req,res) => {
 ///////////////////////////////////////
 /////////////USER PROFILE/////////////
 /////////////////////////////////////
-userController.show = (req,res) => {
-  User.findById()
-  .then(user => {
-    res.render('users/user-show', { user })
-  })
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
-}
+// userController.show = (req,res) => {
+//   User.findById()
+//   .then(user => {
+//     res.render('users/user-show', { user })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json(err)
+//   })
+// }
 
 ///////////////////////////////////////
 /////////////EDIT PROFILE VIEW////////

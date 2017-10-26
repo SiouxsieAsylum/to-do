@@ -6,11 +6,11 @@ Task.create = (task,userId) => {
 }
 
 Task.findByCategory = (category) => {
-  return db.one(`SELECT * FROM tasks WHERE category = $1 RETURNING *`,[category])
+  return db.one(`SELECT * FROM tasks WHERE category = $1`,[category])
 }
 
 Task.findByStatus = (status) => {
-  return db.one(`SELECT * FROM tasks WHERE status = $1 RETURNING *`,[status])
+  return db.one(`SELECT * FROM tasks WHERE status = $1`,[status])
 }
 
 Task.findById = (id) => {

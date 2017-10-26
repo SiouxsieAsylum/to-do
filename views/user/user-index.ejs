@@ -4,7 +4,7 @@
 
       <a href="/user/tasks/<%=t.id%>"><li><%= t.title %></li></a>
       <a href="/user/tasks/<%=t.id%>/edit"><button>edit</button></a>
-      <form method='POST' action="/user/tasks/<%=t.id%>/?_method=DELETE">
+      <form method='POST' action="/user/tasks/<%=t.id%>?_method=DELETE">
         <button type="submit">delete</button>
       </form>
     <%}%>

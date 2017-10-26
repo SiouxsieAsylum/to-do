@@ -6,6 +6,7 @@ User.findAllUserTasks = (id) => {
 }
 
 User.create = (user) => {
+  // you can encrypt your user's passwords in here so you can seed with js and all your users will work :D
   return db.one(`INSERT INTO users(username, password, firstname) VALUES ($1,$2,$3) RETURNING *`,[user.username, user.password, user.firstname]);
 }
 
