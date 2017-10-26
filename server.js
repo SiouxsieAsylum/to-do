@@ -5,7 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const path = require("path");
-const methodOverride= require("method-override");
+const methodOverride = require("method-override");
 const userRoutes = require("./routes/user-routes");
 const authRoutes = require("./routes/auth-routes");
 const taskRoutes = require("./routes/task-routes");
@@ -27,7 +27,7 @@ app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(methodOverride('_method'))
+
 app.use(cookieParser());
 app.use(session({
   secret: process.env.SECRET_KEY,
@@ -36,13 +36,13 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(methodOverride('_method'));
 ///////////////////////////////////////
 /////////////ROUTES///////////////////
 /////////////////////////////////////
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.use('tasks',taskRoutes);
+app.use('/tasks',taskRoutes);
 // userRouter.use('/tasks', tasks);
 
 ///////////////////////////////////////

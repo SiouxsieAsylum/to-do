@@ -10,7 +10,7 @@ const authHelpers = require('../services/auth/auth-helpers');
 userRouter.get('/', authHelpers.loginRequired,userController.index);
 
 userRouter.get('/:id/edit', authHelpers.loginRequired, userController.edit);
-userRouter.get(':id', authHelpers.loginRequired, userController.show);
+
 
 ///////////////////////////////////////
 /////////////PUT REQUESTS/////////////

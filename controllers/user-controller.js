@@ -9,9 +9,9 @@ const userController = {};
 /////////////////////////////////////
 userController.index = (req,res) => {
   User.findAllUserTasks(req.user.id)
-  .then((tasks,user) => {
+  .then((tasks) => {
     console.log("index");
-    res.render('user/user-index', { tasks, user })
+    res.render('user/user-index', { tasks })
   })
   .catch(err => {
     console.log(err)
@@ -25,7 +25,7 @@ userController.index = (req,res) => {
 userController.show = (req,res) => {
   User.findById()
   .then(user => {
-    res.render('users/user-show', {user})
+    res.render('users/user-show', { user })
   })
   .catch(err => {
     console.log(err)
@@ -62,7 +62,7 @@ userController.update = (req,res) => {
   .then(user => {
     req.login(user,(err) =>{
       if (err) return next(err);
-      res.redirect(`/user/${user.id}`)
+      res.redirect(`/user/${ user.id }`)
     })
   })
   .catch(err => {

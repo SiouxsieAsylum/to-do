@@ -13,9 +13,9 @@ User.findByUserName = (username) => {
   return db.one(`SELECT * FROM users WHERE username = $1`,[username])
 }
 
-User.findById = (id) => {
-  return db.one(`SELECT * FROM users WHERE id = $1`,[id])
-}
+// User.findById = (id) => {
+//   return db.one(`SELECT * FROM users WHERE id = $1`,[id])
+// }
 
 User.update = (user, id) => {
   return db.one(`UPDATE users SET username = $1, password = $2, firstname = $3 RETURNING *`,[user.username, user.password, user.firstname]);

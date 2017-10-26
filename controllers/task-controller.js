@@ -7,7 +7,7 @@ const taskController = {};
 taskController.show = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
-    res.render('/tasks/task-show', { task });
+    res.render('tasks/task-show', { task });
   })
   .catch(err => {
     console.log(err);
@@ -51,9 +51,9 @@ taskController.filterStatus = (req,res) => {
 /////////////RENDER EDIT TASKS PAGE///
 /////////////////////////////////////
 taskController.edit = (req,res) => {
-  Task.findById(req.param.id)
+  Task.findById(req.params.id)
   .then(task => {
-    res.render('tasks/task-edit', {task});
+    res.render('tasks/task-edit', { task });
   })
   .catch(err => {
     console.log(err);
@@ -68,8 +68,8 @@ taskController.create = (req,res) => {
   Task.create({
     title: req.body.title,
     category: req.body.category,
-    user_id: req.body.user_id
-  })
+    description: req.body.description
+  }, req.user.id)
   .then(task => {
     res.redirect(`tasks/${task.id}`);
   })
@@ -86,9 +86,9 @@ taskController.update = (req,res) => {
   Task.update({
     title: req.body.title,
     category: req.body.category,
-    user_id: req.body.user_id
+    description: req.body.description
   }, req.user.id)
-  .then((tasks) => {
+  .then((task) => {
     res.redirect(`tasks/${task.id}`);
   })
   .catch(err => {

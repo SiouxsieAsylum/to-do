@@ -1,2 +1,15 @@
 <% include ../partials/header%>
+
+<form action="/tasks/<%=task.id%>?_method=PUT" method="POST">
+  <% console.log(task)%>
+  <input name = "title" placeholder = "title" value=<%=task.title %> >
+  <br>
+  <input name = "category" placeholder = "category">
+  <br>
+  <input name = "description" placeholder = "description">
+  <br>
+  <!-- <input name = "id" type="hidden" value="<%//task.id%>"> -->
+  <button type = "submit" value = "submit"></button>
+</form>
+
 <% include ../partials/end%>

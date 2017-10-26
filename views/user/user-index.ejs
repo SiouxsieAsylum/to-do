@@ -1,8 +1,13 @@
 <% include ../partials/header%>
   <ul>
     <% for (let t of tasks) {%>
-      <li><%= t.title %></li>
+
+      <a href="/user/tasks/<%=t.id%>"><li><%= t.title %></li></a>
+      <a href="/user/tasks/<%=t.id%>/edit"><button>edit</button></a>
+      <form method='POST' action="/user/tasks/<%=t.id%>/?_method=DELETE">
+        <button type="submit">delete</button>
+      </form>
     <%}%>
   </ul>
-  <a href="/user/<%= user.id %>/edit"><button>edit</button></a>
+  <a href="/user/tasks/new"><button>New Task</button></a>
 <% include ../partials/end%>
