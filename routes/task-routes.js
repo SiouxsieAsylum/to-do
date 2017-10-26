@@ -1,6 +1,7 @@
 const express = require('express');
 const taskRouter = express.Router();
 const taskControllers = require('../controllers/task-controller');
+const logger = require('morgan');
 const authHelpers = require('../services/auth/auth-helpers');
 
 ///////////////////////////////////////
@@ -20,7 +21,9 @@ taskRouter.get('/:id', authHelpers.loginRequired, taskControllers.show);
 ///////////////////////////////////////
 /////////////POST REQUESTS////////////
 /////////////////////////////////////
-taskRouter.post("/", authHelpers.loginRequired, taskControllers.create);
+
+taskRouter.post('/', authHelpers.loginRequired, taskControllers.create);
+// taskRouter.use(logger(post));
 ///////////////////////////////////////
 /////////////PUT REQUESTS/////////////
 /////////////////////////////////////

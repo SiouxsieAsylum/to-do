@@ -23,7 +23,7 @@ taskController.show = (req,res) => {
 taskController.filterCategory = (req,res) => {
   Task.findByCategory(req.params.category)
   .then(tasks => {
-    res.render('/user', {task});
+    res.redirect('/user', {task});
   })
   .catch(err => {
     console.log(err);
@@ -39,7 +39,7 @@ taskController.filterCategory = (req,res) => {
 taskController.filterStatus = (req,res) => {
   Task.findByStatus(req.params.status)
   .then(tasks => {
-    res.render('/user', {task});
+    res.redirect('/user', {task});
   })
   .catch(err => {
     console.log(err);
@@ -71,7 +71,7 @@ taskController.create = (req,res) => {
     description: req.body.description
   }, req.user.id)
   .then(task => {
-    res.redirect(`tasks/${task.id}`);
+    res.render(`tasks/task-show`, { task });
   })
   .catch(err => {
     console.log(err);
@@ -89,7 +89,7 @@ taskController.update = (req,res) => {
     description: req.body.description
   }, req.user.id)
   .then((task) => {
-    res.redirect(`tasks/${task.id}`);
+    res.redirect(`user/tasks/${task.id}`);
   })
   .catch(err => {
     console.log(err);
@@ -103,7 +103,7 @@ taskController.update = (req,res) => {
 taskController.delete = (req,res) => {
   Task.delete(req.params.id)
   .then(() => {
-    res.redirect('/tasks');
+    res.redirect('/user');
   })
   .catch(err => {
     console.log(err);

@@ -1,6 +1,6 @@
 <% include ../partials/header%>
 
-<form action="/tasks/<%=task.id%>?_method=PUT" method="POST">
+<form action="/user/tasks/<%=task.id%>?_method=PUT" method="POST">
   <% console.log(task)%>
   <input name = "title" placeholder = "title" value=<%=task.title %> >
   <br>

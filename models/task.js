@@ -2,7 +2,7 @@ const db = require('../db/config');
 const Task = {};
 
 Task.create = (task,userId) => {
-  return db.one(`INSERT INTO tasks (title, category, description) VALUES ($1,$2,$3)`,[task.title, task.category, task.description, userId]);
+  return db.one(`INSERT INTO tasks (title, category, description,user_id) VALUES ($1,$2,$3,$4) RETURNING *`,[task.title, task.category, task.description, userId]);
 }
 
 Task.findByCategory = (category) => {
