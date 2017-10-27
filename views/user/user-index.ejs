@@ -1,13 +1,51 @@
 <% include ../partials/header%>
-  <ul>
-    <% for (let t of tasks) {%>
 
-      <a href="/user/tasks/<%=t.id%>"><li><%= t.title %></li></a>
-      <a href="/user/tasks/<%=t.id%>/edit"><button>edit</button></a>
+  <a href="/user/tasks/new"><button id="new">New Task</button></a>
+
+
+  <ul id="tasklist">
+    <% for(let t of tasks) {%>
+   <div class = 'list-container'>
+    <div class='title-container'>
+      <a href="/user/tasks/<%=t.id%>">
+        <li class="title"><%= t.title %></li>
+      </a>
+        <li class="status"><%= t.status == false ? "To Do" : "Done!" %></li>
+
+    </div>
+
+    <div class="desc-container">
+    <div class="flexleft">
+    <a href="/user/tasks/<%= t.category %>"><li class="category"><%= t.category %></li></a>
+    </div>
+    <div class="flexright">
+      <div class="editbuttons">
+        <a href="/user/tasks/<%=t.id%>/edit">
+          <button>Edit</button>
+        </a>
+
       <form method='POST' action="/user/tasks/<%=t.id%>?_method=DELETE">
-        <button type="submit">delete</button>
+        <button type="submit">Delete</button>
       </form>
+     </div>
+
+      <div class="setStatus">
+       <form method='POST' action="/user/tasks/<%=t.id%>/status?_method=PUT">
+        Done
+          <input type="radio" name="status" value="true">
+        To Do
+          <input type="radio" name="status" value="false">
+         <button type="submit">Done?</button>
+         </form>
+        </div>
+      </div>
+     </div>
+    </div>
     <%}%>
   </ul>
-  <a href="/user/tasks/new"><button>New Task</button></a>
+
 <% include ../partials/end%>
+
+<!-- go to view
+in ejs
+<script> const flashcardquestion = "<%//flashcard.question%>"</script> -->

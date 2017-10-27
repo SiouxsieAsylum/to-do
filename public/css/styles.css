@@ -1,0 +1,281 @@
+*{
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+  color:rgb(249, 248, 232);
+}
+
+a:hover{
+  color:white;
+}
+
+/*/////////////////////////////////////
+/////////////NAV//////////////////////
+///////////////////////////////////*/
+
+#nav-container{
+  display: flex;
+  flex-direction: space-around;
+  background-color: rgba(0,0,0,0.4);
+  background:linear-gradient(to top,rgba(0,0,0,0),rgba(0,0,0,0.4));
+}
+
+#logo{
+  height:7vh;
+  width: 7vh;
+  /*background-color: blue;*/
+  background-image:url(../images/logo.png);
+  background-size: cover;
+  align-self: center;
+  margin-left: 1vh;
+}
+
+#nav{
+  width: 100vw;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+
+}
+
+#nav li {
+  line-height: 5vh;
+  color: rgb(234, 234, 234);
+  display: inline-block;
+  margin-right: 3vw;
+}
+
+#dropdown li {
+  display: none;
+}
+
+#nav li:hover #dropdown, #nav li:active #dropdown{
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  width:20vw;
+  background-color:rgba(0,0,0,0.4);
+}
+
+#nav li:hover #dropdown li, #nav li:active #dropdown li{
+  display: block;
+}
+
+li {
+  display: inline-block;
+}
+
+/*/////////////////////////////////////
+/////////////BODY/////////////////////
+///////////////////////////////////*/
+
+body{
+  background-image: url(../images/sanwal-deen-93466.jpg);
+  background-size: 120vw;
+  /*display: flex;*/
+}
+
+#body-container{
+  height:90vh;
+  width:100vw;
+  position: relative;
+  bottom:0;
+  /*background-color: green;*/
+  display: flex;
+  justify-content: center;
+}
+
+#content-container{
+  align-self: center;
+  width: 80vw;
+  height:80vh;
+  border-radius: 10vw;
+  background-color: rgba(249, 248, 232,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  overflow-y: scroll;
+}
+
+#content-container * {
+  align-self: center;
+}
+
+/*/////////////////////////////////////
+///////INDEX/TASK LIST/BASE STYLES////
+///////////////////////////////////*/
+
+.title-container{
+  background-color: rgb(130, 128, 124);
+  height: 5vh;
+  width: 60vw;
+  display:flex;
+  justify-content: space-around;
+  margin-top: 10vh;
+}
+
+.desc-container{
+  position: relative;
+  background-color: rgba(130, 128, 124,0.5);
+  width: 60vw;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.flexright{
+  display: flex;
+  justify-content: space-between;
+  width:30vw;
+}
+
+.setStatus{
+  position:relative;
+  bottom:0;
+  right:0;
+  width:12vw;
+  display: flex;
+}
+
+button{
+  background-color: rgba(0,0,0,0);
+  border-radius: 2vh;
+  height:5vh;
+  border:1vh solid rgb(249, 248, 232);
+  color:rgb(249, 248, 232);
+}
+
+#new {
+  /*align-self: center;*/
+  /*position: absolute;*/
+  /*top:3vh;*/
+  /*right:25vw;*/
+  /*height: 10vh;*/
+   position: relative;
+    /*width:50vw;*/
+  line-height: 0;
+  padding:4vw;
+  font-size: 7vw;
+  font-weight: bolder;
+  background-color: rgba(163, 162, 151,0.5)
+}
+
+.list-container{
+  border-radius:2vh;
+}
+
+/*/////////////////////////////////////
+///////EDIT TASK/NEW TASK/////////////
+///////////////////////////////////*/
+
+.edit-task{
+  height: 70vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+
+.edit-task input {
+  margin: 2vh;
+}
+
+input[type=text]{
+  background-color: rgba(130, 128, 124,0.8);
+  color: white;
+  padding: 1vh;
+  font-size: 3vh;
+}
+
+input[type=text]:active{
+  background-color: rgba(122, 120, 116, 0.8);
+}
+
+.pick-category{
+  position:relative;
+  align-self: center;
+}
+
+.submit-form{
+  border:1vw solid rgb(76, 75, 72);
+  color:rgb(76, 75, 72);
+}
+
+.edit-description{
+  padding: 4vw;
+  margin-bottom: 1vh;
+}
+
+#title-category{
+  width:70vw;
+  display: flex;
+}
+
+#title-category div{
+  margin:1vw;
+}
+
+/*/////////////////////////////////////
+///////SHOW TASK//////////////////////
+///////////////////////////////////*/
+
+#text-align{
+  /*background-color: red;*/
+}
+
+h1 {
+  font-size: 5vh;
+  padding-bottom: 3vh;
+
+}
+
+h2 {
+  font-size: 4vh;
+}
+
+#classdesc{
+  padding: 1vh;
+  font-size: 2vh;
+}
+
+#description{
+  height: 50vh;
+  width: 50vh;
+  background-color: rgba(130, 128, 124,0.5);
+  margin:3vh 3vh 3vh 0;
+}
+
+@media screen and (max-width: 620px){
+  body{
+    background-image: url(../images/stil-410574.jpg);
+  }
+
+#new{
+    /*width:20vh;*/
+    position: absolute;
+}
+
+.setStatus{
+  display: none;
+  }
+
+  .editbuttons{
+    position: absolute;
+    display: flex;
+  }
+
+  #nav li:hover #dropdown, #nav li:active #dropdown{
+    width: 35vw;
+  }
+
+  #description{
+  height: 40vh;
+  width: 50vw;
+
+}
+
+}

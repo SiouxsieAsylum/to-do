@@ -7,23 +7,44 @@ const taskController = {};
 taskController.show = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
-    res.render('tasks/task-show', { task });
+    res.render('tasks/task-show', { task,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
+///////////////////////////////////////
+///ATTEMPT TO FIND ALL CATEGORIES/////
+/////////////////////////////////////
 
-// figure out how to get these to work
+// taskController.findCategories = (req,res) => {
+//   Task.findCategories(req.params.categories)
+//   .then(categories => {
+//     res.render('partials/nav.ejs', {categories});
+//     // next();
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     res.status(500).json(err);
+//   })
+// }
 
 ///////////////////////////////////////
 /////////////FIND TASKS BY CATEGORY///
 /////////////////////////////////////
 taskController.filterCategory = (req,res) => {
+  console.log(req.params.category);
   Task.findByCategory(req.params.category)
   .then(tasks => {
-    res.redirect('/user', {task});
+     // console.log(err);
+      res.render('auth/oops', {tasks,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
     console.log(err);
@@ -31,19 +52,36 @@ taskController.filterCategory = (req,res) => {
   })
 }
 
-// figure out how to get these to work
-
 ///////////////////////////////////////
 /////////////FIND TASKS BY STATUS/////
 /////////////////////////////////////
-taskController.filterStatus = (req,res) => {
-  Task.findByStatus(req.params.status)
-  .then(tasks => {
-    res.redirect('/user', {task});
+// taskController.filterStatus = (req,res) => {
+//   Task.findByStatus(req.params.status)
+//   .then(tasks => {
+//     res.render('user/user-index', {tasks});
+//   })
+//   .catch(err => {
+//     console.log(err);
+//     res.status(500).json(err);
+//   })
+// }
+
+///////////////////////////////////////
+/////////////CHANGE TASK STATUS///////
+/////////////////////////////////////
+taskController.setStatus = (req,res) => {
+  //status = true ? status = false : status = true;
+  Task.setStatus({
+    status: req.body.status
+  }, req.params.id)
+  .then(task => {
+    res.redirect(`/user`)
   })
-  .catch(err => {
+   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -53,11 +91,15 @@ taskController.filterStatus = (req,res) => {
 taskController.edit = (req,res) => {
   Task.findById(req.params.id)
   .then(task => {
-    res.render('tasks/task-edit', { task });
+    res.render('tasks/task-edit', { task,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -71,11 +113,15 @@ taskController.create = (req,res) => {
     description: req.body.description
   }, req.user.id)
   .then(task => {
-    res.render(`tasks/task-show`, { task });
+    res.render(`tasks/task-show`, { task,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -90,11 +136,15 @@ taskController.update = (req,res) => {
   }, req.params.id)
   .then((task) => {
     console.log(task);
-    res.render(`tasks/task-show`, { task });
+    res.render(`tasks/task-show`, { task,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -107,8 +157,10 @@ taskController.delete = (req,res) => {
     res.redirect('/user');
   })
   .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
+   console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 

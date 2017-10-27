@@ -1,15 +1,18 @@
 <% include ../partials/header%>
-  <% console.log(task)%>
-<form  method="POST" action="/user/tasks/<%=task.id%>?_method=PUT">
-  <% console.log(task)%>
-  <input id = "title" name = "title" placeholder = "title" >
-  <br>
-  <input name = "category" placeholder = "category">
-  <br>
-  <input name = "description" placeholder = "description">
+<h1>Edit Task</h1>
+<form class="edit-task" method="POST" action="/user/tasks/<%=task.id%>?_method=PUT">
+
+  <p>Title</p>
+  <input class = "edit-title" type="text" name = "title" placeholder = "title" value=" <%=task.title%> ">
+    <!-- <div id = "pick-category"> -->
+      <p>Category</p>
+      <input type = "text"  name = "category" placeholder = "category" value=" <%=task.category%> ">
+
+  <p>Description</p>
+  <input class = "edit-description" type="text" name = "description" placeholder = "description" value="<%=task.description %>">
   <br>
   <!-- <input name = "id" type="hidden" value="<%//task.id%>"> -->
-  <button type = "submit" value = "submit"></button>
+  <button class = "submit-form" type = "submit" value = "submit">submit</button>
 </form>
 
 <% include ../partials/end%>

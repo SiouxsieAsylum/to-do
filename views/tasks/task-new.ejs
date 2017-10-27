@@ -1,15 +1,24 @@
 <% include ../partials/header%>
-
+<h1>Create A New Task</h1>
 <form action = "/user/tasks" method="POST" >
-  <input  type = "text" name = "title" placeholder = "title">
+  <div id = "title-category">
+    <div>
+      <p>Title</p>
+      <input class = "edit-title" type="text" name = "title" placeholder = "title">
+    </div>
+
+    <div>
+        <p>Category</p>
+      <input type = "text"  name = "category" placeholder = "category" >
+    </div>
+
+  </div>
+  <p>Description</p>
+  <input class="edit-description" type="text" name = "description" placeholder = "description" >
   <br>
-  <input type = "text"  name = "category" placeholder = "category">
-  <br>
-  <input  type = "text" name = "description" placeholder = "description">
-  <br>
-  <br>
-  <!-- <input name = "id" type="hidden" value="<%//userid%>"> -->
-  <button type = "submit" value = "submit"></button>
+  <!-- <input name = "id" type="hidden" value="<%//task.id%>"> -->
+
+  <button class = "submit-form" type = "submit" value = "submit">submit</button>
 </form>
 
 <% include ../partials/end%>

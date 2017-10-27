@@ -12,12 +12,22 @@ taskRouter.get('/', authHelpers.loginRequired, (req,res) => {
 });
 
 taskRouter.get('/new', (req,res) => {
-  res.render('tasks/task-new');
-})
+  res.render('tasks/task-new', {
+      auth: (req.user) ? true : false
+    });
+});
+
+taskRouter.get('/:id', authHelpers.loginRequired, taskControllers.show);
+
+taskRouter.get('/:category', authHelpers.loginRequired,taskControllers.filterCategory);
+
+// didn't have time to create functionality
+// taskRouter.get('/:status', authHelpers.loginRequired, taskControllers.filterStatus);
+
 
 taskRouter.get('/:id/edit', authHelpers.loginRequired, taskControllers.edit);
 
-taskRouter.get('/:id', authHelpers.loginRequired, taskControllers.show);
+
 ///////////////////////////////////////
 /////////////POST REQUESTS////////////
 /////////////////////////////////////
@@ -28,6 +38,8 @@ taskRouter.post('/', authHelpers.loginRequired, taskControllers.create);
 /////////////PUT REQUESTS/////////////
 /////////////////////////////////////
 taskRouter.put("/:id", authHelpers.loginRequired, taskControllers.update);
+taskRouter.put("/:id/status", authHelpers.loginRequired, taskControllers.setStatus);
+
 ///////////////////////////////////////
 /////////////DELETE REQUESTS//////////
 /////////////////////////////////////

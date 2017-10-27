@@ -1,8 +1,10 @@
 <% include ../partials/header%>
 
+<div id="text-align">
   <h1><%= task.title %></h1>
-  <h2><%= task.category %></h2>
-  <h3><%= task.description %></h3>
+  <h2>Status: <%= task.status == false ? "To Do" : "Done!" %></h2>
+  <div id="description"><p id="classdesc"><%= task.description %></p></div>
 
-  <a href="/user"><button>back to index</button></a>
+
+  <a href="/user"><button class="submit-form">back to index</button></a>
 <% include ../partials/end%>

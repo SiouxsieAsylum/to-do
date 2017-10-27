@@ -65,7 +65,9 @@ app.set('views', path.join(__dirname, 'views'));
 /////////////CLIENT FACING////////////
 /////////////////////////////////////
 app.get('/', (req,res)=> {
-  res.render('index');
+  res.render('index', {
+      auth: (req.user) ? true : false
+    });
 })
 
 app.listen(port, () => {

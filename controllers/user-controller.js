@@ -11,11 +11,15 @@ userController.index = (req,res) => {
   User.findAllUserTasks(req.user.id)
   .then((tasks) => {
     console.log("index");
-    res.render('user/user-index', { tasks })
+    res.render('user/user-index', { tasks,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+    console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -39,11 +43,15 @@ userController.index = (req,res) => {
 userController.edit = (req,res) => {
   User.findByUserName(req.params.username)
   .then(user => {
-    res.render('users/user-edit', {user})
+    res.render('users/user-edit', { user,
+      auth: (req.user) ? true : false
+    });
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+    console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -66,8 +74,10 @@ userController.update = (req,res) => {
     })
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+ console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -90,8 +100,10 @@ userController.create = (req,res) => {
     })
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+     console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 
@@ -105,8 +117,10 @@ userController.delete = (req,res) => {
     res.redirect('index');
   })
   .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
+     console.log(err);
+    res.status(500).render('auth/oops', {err,
+      auth: (req.user) ? true : false
+    });
   })
 }
 

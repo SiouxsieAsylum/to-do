@@ -1,9 +1,31 @@
-
+<div id = "nav-container">
+  <div id="logo"></div>
 <ul id = "nav">
-  <li class="loggedIn">Logout</li>
-  <li class="loggedIn">Update User Info</li>
-  <li class="loggedIn">Category</li>
-  <li class="loggedIn">Status</li>
-  <li class="loggedOut">Login</li>
-  <li class="loggedOut">Register</li>
+  <% if (auth) {%>
+  <a href="/auth/logout"><li class="loggedIn">Logout</li></a>
+  <!-- <a href="/user/:id/"><li class="loggedIn">Update User Info</li></a> -->
+  <li class="loggedIn">Category
+    <ul id = "dropdown">
+      <a href="/user/tasks/Chores"><li>
+        Chores
+      </li></a>
+      <a href="/user/tasks/Hobbies"><li>
+        Hobbies
+      </li></a>
+      <a href="/user/tasks/Appointments"><li>
+        Appointments
+      </li></a>
+      <a href="/user/tasks/Unsorted"><li>
+        Unsorted
+      </li></a>
+    </ul>
+  </li>
+  <a href="/user"><li class="loggedIn">Home</li></a>
+  <%} else { %>
+  <a href="/auth/login"><li class="loggedOut">Login</li></a>
+  <a href="auth/register"><li class="loggedOut">Register</li></a>
+  <% }%>
 </ul>
+</div>
+
+

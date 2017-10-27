@@ -9,8 +9,12 @@ Task.findByCategory = (category) => {
   return db.one(`SELECT * FROM tasks WHERE category = $1`,[category])
 }
 
-Task.findByStatus = (status) => {
-  return db.one(`SELECT * FROM tasks WHERE status = $1`,[status])
+Task.findCategories = (categories) => {
+  return db.manyOrNone(`SELECT category FROM tasks`);
+}
+
+Task.setStatus = (task, id) => {
+  return db.one(`UPDATE tasks SET status = $1 WHERE id = $2 RETURNING *`,[task.status, id])
 }
 
 Task.findById = (id) => {
